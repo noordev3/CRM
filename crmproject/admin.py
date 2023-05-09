@@ -1,6 +1,9 @@
 from django.contrib import admin
-
+from django.contrib.auth import get_user_model
 from crmproject.models import *
+Users = get_user_model()
+admin.site.site_header = "CRM PROJECT"
+admin.site.site_title = "CRM PROJECT"
 
 class AddressDetails(admin.ModelAdmin):
     list_display = [
