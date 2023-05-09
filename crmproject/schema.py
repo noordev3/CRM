@@ -44,4 +44,24 @@ class OrderOut(Schema):
     cost : int
     user : UserAddress
     quantity : int
-    products : List[int]
+
+class CategoryOut(Schema):
+    id: int
+    name: str
+    description: str
+    img: str
+
+class ProductOut(Schema):
+    id: int
+    name : str
+    price : float
+    description : str
+    rating : float
+    quantity : int
+    img : str
+
+class OrderIn(Schema):
+    address_id : int
+    cost : int
+    user_id : int
+    quantity : int

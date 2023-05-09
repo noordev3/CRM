@@ -26,7 +26,6 @@ class OrderDetails(admin.ModelAdmin):
     list_display = [
         "address",
         "cost",
-        "products",
         "user"
     ]
     
@@ -34,3 +33,4 @@ admin.site.register(User,UserDetails)
 admin.site.register(Address,AddressDetails)
 admin.site.register(Order,OrderDetails)
 admin.site.register(Product,ProductDetails)
+admin.site.register(Category)

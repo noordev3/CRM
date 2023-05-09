@@ -32,3 +32,21 @@ def users(request,id: int):
     return {
         "message": "user deleted successfully!"
     }
+
+@user_router.post("/login", response=MessageOut)
+def users(request, username: str, password: str):
+    name = User.objects.filter(name = username)
+    return {"message":"Welcome User"}
+
+@user_router.put("/updatepassword", response=MessageOut)
+def change(request, id:int, oldpass:str, newpass:str,confirmpass:str):
+    User.objects.filter(id=id)
+    if str(User.objects.filter(password=oldpass).exists()) == 'False':
+        return {"message":"old password is incorrect"}
+    if newpass == oldpass:
+        return {"message":"new password is incorrect"}
+    if confirmpass != newpass:
+        return {"message":"confirm and new must be the same"}
+    User.objects.update(password = newpass)
+    return {"message": "password changed successfully"}
+    
