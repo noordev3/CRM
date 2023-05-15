@@ -48,4 +48,5 @@ class Order(models.Model):
 class Category(models.Model):
     name = models.CharField("name", max_length=255, null=True, blank=True)
     description = models.TextField('description', null=True, blank=True)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE, null=True, blank=True)
     img = models.TextField("image", null=True, blank=True)
