@@ -37,7 +37,7 @@ def address(request,id:int,payload: AddressIn):
 @address_router.delete('/addressdel',response=MessageOut)
 def address(request,id:int):
     Address.objects.filter(id = id).delete()
-    return {"message":"address updated successfully!"}
+    return {"message":"address delete successfully!"}
 
     
     
