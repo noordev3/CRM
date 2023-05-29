@@ -13,10 +13,10 @@ def order(request):
 def order(request, id:int):
     return Order.objects.get(id = id)
 
-@order_router.post("/order", response=MessageOut)
-def order(request, payload: OrderIn):
-    Order.objects.create(address_id = payload.address_id,
-    cost = payload.cost,
-    user_id = payload.user_id,
-    quantity = payload.quantity)
+@order_router.get("/orderCheck", response=MessageOut)
+def order(request, user_id: int, cost: float, quantity: int):
+    user = User.objects.get(id = user_id)
+    address, _ = Address.objects.get_or_create(name=user.city, user=user)
+    print(address, user)
+    print("order", Order.objects.create(address = address, cost = cost, user = user, quantity = quantity))
     return {"message": "order created successfully"}

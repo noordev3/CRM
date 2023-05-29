@@ -16,6 +16,8 @@ class UserIn(Schema):
     password: str
     email:    str
     phone:    str
+    city: str
+    gender: str
 
 class UserAddress(Schema):
     name : str
@@ -59,6 +61,7 @@ class ProductOut(Schema):
     rating : float
     quantity : int
     img : str
+    category: CategoryOut
 
 class OrderIn(Schema):
     address_id : int

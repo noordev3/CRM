@@ -30,7 +30,7 @@ class Product(models.Model):
     rating = models.FloatField('rating',null=True, blank=True)
     quantity = models.IntegerField('quantity',null=True,blank=True)
     img = models.TextField("image", null=True, blank=True)
-
+    category = models.ForeignKey('Category',on_delete=models.CASCADE, null=True, blank=True, related_name='products')
     def __str__(self):
         return self.name
     
@@ -48,5 +48,4 @@ class Order(models.Model):
 class Category(models.Model):
     name = models.CharField("name", max_length=255, null=True, blank=True)
     description = models.TextField('description', null=True, blank=True)
-    product = models.ForeignKey(Product,on_delete=models.CASCADE, null=True, blank=True)
     img = models.TextField("image", null=True, blank=True)
