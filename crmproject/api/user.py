@@ -12,12 +12,14 @@ def users(request):
 def users(request, id:int):
     return User.objects.get(id = id)
 
-@user_router.post('register',response=MessageOut)
-def users(request,payload: UserIn):
-    User.objects.create(name = payload.name, password = payload.password, email = payload.email, phone = payload.phone)
-    return {
-        "message": "user created successfully!"
-    }
+@user_router.get('register')
+def users(request, name: str ,password: str ,email:  str,city: str ,gender: str):
+    user = User.objects.create(name = name, password = password, email = email, city=city, gender=gender)
+    
+    if user:
+        return {
+            "id": user.id
+        }
     
 @user_router.put("updateinfo",response=MessageOut)
 def users(request,id: int, payload: UserIn):
@@ -33,10 +35,14 @@ def users(request,id: int):
         "message": "user deleted successfully!"
     }
 
-@user_router.post("/login", response=MessageOut)
+@user_router.get("/login")
 def users(request, username: str, password: str):
-    name = User.objects.filter(name = username)
-    return {"message":"Welcome User"}
+    name = User.objects.filter(name = username, password = password)
+
+    if name:
+        return {"id": name.first().id}
+    else:
+        return {"message": "user not found"}
 
 @user_router.put("/updatepassword", response=MessageOut)
 def change(request, id:int, oldpass:str, newpass:str,confirmpass:str):
