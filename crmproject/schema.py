@@ -63,8 +63,13 @@ class ProductOut(Schema):
     img : str
     category: CategoryOut
 
+class ProductIn(Schema):
+    id: int
+    qty: float
+
 class OrderIn(Schema):
     address_id : int
     cost : int
     user_id : int
     quantity : int
+    orders : List[ProductIn]

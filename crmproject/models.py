@@ -45,6 +45,15 @@ class Order(models.Model):
     def __str__(self):
         return str(self.user)
 
+class Item(models.Model):
+    quantity = models.IntegerField("quantity", null=True, blank=True, default=0)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"name[{self.product.name}] quantity[{self.quantity}] price[{self.product.price}$]"
+    
+
 class Category(models.Model):
     name = models.CharField("name", max_length=255, null=True, blank=True)
     description = models.TextField('description', null=True, blank=True)
